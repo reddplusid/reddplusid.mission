@@ -78,9 +78,9 @@ class IMission(form.Schema, IImageScaleTraversable):
     end  = schema.Datetime(
             title=_(u'End date'),
             )
-
-    output_stream = schema.List(
-                value_type=schema.Choice(source=streams),
+    
+    output_stream = schema.Choice(
+                vocabulary=streams,
                 title=_(u'Output Stream'),
                 description=_(u'Select Streams'),
                 required=True,
