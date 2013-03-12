@@ -42,6 +42,7 @@ streams = SimpleVocabulary(
 
 mission_funding_sources = SimpleVocabulary(
         [SimpleTerm(value=u'Multilateral', 
+
             title=_(u'Multilateral')),
          SimpleTerm(value=u'Bilateral', 
             title=_(u'Bilateral')),
@@ -65,11 +66,59 @@ mission_scope_type = SimpleVocabulary(
          SimpleTerm(value=u'Regional', 
             title=_(u'Regional')),
          ])
- 
+
+#Probably better to be parsed from a CSV
+id_provinces = SimpleVocabulary(
+            [
+                SimpleTerm(value=u'ID-AC', title=_(u'Aceh')),
+                SimpleTerm(value=u'ID-BA', title=_(u'Bali')),
+                SimpleTerm(value=u'ID-BB', title=_(u'Bangka Belitung')),
+                SimpleTerm(value=u'ID-BT', title=_(u'Banten')),
+                SimpleTerm(value=u'ID-BE', title=_(u'Bengkulu')),
+                SimpleTerm(value=u'ID-GO', title=_(u'Gorontal')),
+                SimpleTerm(value=u'ID-JA', title=_(u'Jambi')),
+                SimpleTerm(value=u'ID-JB', title=_(u'Jawa Barat')),
+                SimpleTerm(value=u'ID-JT', title=_(u'Jawa Tengah')),
+                SimpleTerm(value=u'ID-JI', title=_(u'Jawa Timur')),
+                SimpleTerm(value=u'ID-KB', title=_(u'Kalimantan Barat')),
+                SimpleTerm(value=u'ID-KS', title=_(u'Kalimantan Selatan')),
+                SimpleTerm(value=u'ID-KT', title=_(u'Kalimantan Tengah')),
+                SimpleTerm(value=u'ID-KI', title=_(u'Kalimantan Timur')),
+                SimpleTerm(value=u'ID-KU', title=_(u'Kalimantan Utara')),
+                SimpleTerm(value=u'ID-KR', title=_(u'Kepulauan Riau')),
+                SimpleTerm(value=u'ID-LA', title=_(u'Lampung')),
+                SimpleTerm(value=u'ID-MA', title=_(u'Maluku')),
+                SimpleTerm(value=u'ID-MU', title=_(u'Maluku Utara')),
+                SimpleTerm(value=u'ID-NB', title=_(u'Nusa Tenggara Barat')),
+                SimpleTerm(value=u'ID-NT', title=_(u'Nusa Tenggara Timur')),
+                SimpleTerm(value=u'ID-PA', title=_(u'Papua')),
+                SimpleTerm(value=u'ID-PB', title=_(u'Papua Barat')),
+                SimpleTerm(value=u'ID-RI', title=_(u'Riau')),
+                SimpleTerm(value=u'ID-SR', title=_(u'Sulawesi Barat')),
+                SimpleTerm(value=u'ID-SN', title=_(u'Sulawesi Selatan')),
+                SimpleTerm(value=u'ID-ST', title=_(u'Sulawesi Tengah')),
+                SimpleTerm(value=u'ID-SG', title=_(u'Sulawesi Tenggara')),
+                SimpleTerm(value=u'ID-SA', title=_(u'Sulawesi Utara')),
+                SimpleTerm(value=u'ID-SB', title=_(u'Sumatera Barat')),
+                SimpleTerm(value=u'ID-SS', title=_(u'Sumatera Selatan')),
+                SimpleTerm(value=u'ID-SU', title=_(u'Sumatera Utara')),
+                SimpleTerm(value=u'ID-JK', title=_(u'Jakarta Raya')),
+                SimpleTerm(value=u'ID-YO', title=_(u'Yogyakarta')),
+            ]
+
+            )   
 class IMission(form.Schema, IImageScaleTraversable):
     """
     REDD+ Indonesia Mission
     """
+
+    title = schema.TextLine(title=u'Mission', 
+                         description=u'Brief title of mission. eg. '
+                         'Public Consultation for REDD+ Workshop.')
+
+    description = schema.Text(title=u'Overall Objective', 
+                         description=u'Briefly describe the objectives '
+                         'of the mission.')
 
     start = schema.Datetime(
             title=_(u'Start date'),
@@ -127,6 +176,12 @@ class IMission(form.Schema, IImageScaleTraversable):
                 ' of the mission'),
             value_type=schema.TextLine(),
             missing_value=(),
+            required=True,
+            )
+
+    id_province = schema.Choice(
+            title=_(u'Province'),
+            vocabulary=id_provinces,
             required=True,
             )
 
