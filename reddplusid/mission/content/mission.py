@@ -208,7 +208,7 @@ class IMission(form.Schema, IImageScaleTraversable):
             required=False,
             )
 
-    form.widget(=EnhancedTextLinesFieldWidget)
+    form.widget(mission_location=EnhancedTextLinesFieldWidget)
     mission_location= schema.Tuple(
             title=_(u'City / Location (One per line)'),
             description=_(u'Fill in city or location name and click Add button.'),
@@ -216,5 +216,3 @@ class IMission(form.Schema, IImageScaleTraversable):
             missing_value=(),
             required=True,
             )
-
-
