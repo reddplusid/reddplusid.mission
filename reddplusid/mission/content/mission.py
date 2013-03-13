@@ -196,7 +196,7 @@ class IMission(form.Schema, IImageScaleTraversable):
             description=_(u'If Mission Scope is National, please select '
             'a province.'),
             vocabulary=id_provinces,
-            required=True,
+            required=False,
             missing_value=(),
             )
 
@@ -204,12 +204,11 @@ class IMission(form.Schema, IImageScaleTraversable):
             title=_(u'Country'),
             description=_(u'If Mission Scope is International, please select '
             'a country.'),
-            vocabulary=p01.vocabulary.country.ISO3166Alpha2CountryVocabulary(None),
+            source=p01.vocabulary.country.ISO3166Alpha2CountryVocabulary(None),
             required=False,
-            missing_value=(),
             )
 
-    form.widget(mission_location=EnhancedTextLinesFieldWidget)
+    form.widget(=EnhancedTextLinesFieldWidget)
     mission_location= schema.Tuple(
             title=_(u'City / Location (One per line)'),
             description=_(u'Fill in city or location name and click Add button.'),
