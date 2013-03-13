@@ -17,9 +17,13 @@ from plone.app.textfield import RichText
 from plone.z3cform.textlines.textlines import TextLinesFieldWidget
 from collective.z3cform.widgets.enhancedtextlines import \
 EnhancedTextLinesFieldWidget
+from plone.formwidget.autocomplete import AutocompleteFieldWidget
+from plone.formwidget.autocomplete import AutocompleteMultiFieldWidget
 
 from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
+
+import p01.vocabulary.country
 
 from reddplusid.mission import MessageFactory as _
 
@@ -139,7 +143,7 @@ class IMission(form.Schema, IImageScaleTraversable):
                 title=_(u'Contribution to selected output stream'),
                 description=_(u'Please describe briefly how your '
                     'mission has contributed to realizing the '
-                    'relevant country/regional outcome'),
+                    'relevant stream outcome'),
                 )
 
     mission_funding_source = schema.Choice(
@@ -148,47 +152,36 @@ class IMission(form.Schema, IImageScaleTraversable):
             required=True,
             )
 
-    form.widget(mission_members=EnhancedTextLinesFieldWidget)
-    mission_members= schema.Tuple(
+    form.widget(mission_members=AutocompleteMultiFieldWidget)
+    mission_members= schema.List(
             title=_(u'Mission Members'),
-            description=_(u'List of Mission Members. One name '
-                'per line with principle member first.'),
-            value_type=schema.TextLine(),
+            description=_(u'List of Mission Members. Enter '
+                'name to search, select and press Enter to add. Repeat to '
+                'to add additional members.'),
+            value_type=schema.Choice(vocabulary=u"plone.principalsource.Users",),
             missing_value=(),
             required=True,
             )
 
-    form.widget(mission_author=EnhancedTextLinesFieldWidget)
-    mission_author= schema.Tuple(
+    form.widget(mission_author=AutocompleteMultiFieldWidget)
+    mission_author= schema.List(
             title=_(u'Author'),
-            description=_(u'List of authors. One name '
-                'per line with principle author first.'),
-            value_type=schema.TextLine(),
+            description=_(u'List of Authors. Enter '
+                'name to search, select and press Enter to add. Repeat to '
+                'to add additional members with principal author first.'),
+            value_type=schema.Choice(vocabulary=u"plone.principalsource.Users"),
             missing_value=(),
             required=True,
             )
 
-    form.widget(mission_support_staff=EnhancedTextLinesFieldWidget)
-    mission_support_staff= schema.Tuple(
+    form.widget(mission_support_staff=AutocompleteMultiFieldWidget)
+    mission_support_staff= schema.List(
             title=_(u'Support Staff'),
             description=_(u'List of support staff '
-                'that have made a contribution to the success'
-                ' of the mission'),
-            value_type=schema.TextLine(),
-            missing_value=(),
-            required=True,
-            )
-
-    id_province = schema.Choice(
-            title=_(u'Province'),
-            vocabulary=id_provinces,
-            required=True,
-            )
-
-    form.widget(mission_location=EnhancedTextLinesFieldWidget)
-    mission_location= schema.Tuple(
-            title=_(u'City / Location (One per line)'),
-            value_type=schema.TextLine(),
+                'that have made a contribution to the success '
+                'of the mission. Enter name to search. Select and '
+                'press enter to add. Repeat to add additional staff.'),
+            value_type=schema.Choice(vocabulary=u"plone.principalsource.Users"),
             missing_value=(),
             required=True,
             )
@@ -197,3 +190,32 @@ class IMission(form.Schema, IImageScaleTraversable):
             title=_(u'Mission Scope'),
             vocabulary=mission_scope_type,
             )
+
+    id_province = schema.Choice(
+            title=_(u'Province'),
+            description=_(u'If Mission Scope is National, please select '
+            'a province.'),
+            vocabulary=id_provinces,
+            required=True,
+            missing_value=(),
+            )
+
+    country = schema.Choice(
+            title=_(u'Country'),
+            description=_(u'If Mission Scope is International, please select '
+            'a country.'),
+            vocabulary=p01.vocabulary.country.ISO3166Alpha2CountryVocabulary(None),
+            required=False,
+            missing_value=(),
+            )
+
+    form.widget(mission_location=EnhancedTextLinesFieldWidget)
+    mission_location= schema.Tuple(
+            title=_(u'City / Location (One per line)'),
+            description=_(u'Fill in city or location name and click Add button.'),
+            value_type=schema.TextLine(),
+            missing_value=(),
+            required=True,
+            )
+
+

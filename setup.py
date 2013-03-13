@@ -30,6 +30,7 @@ setup(name='reddplusid.mission',
           'plone.namedfile [blobs]',
           'collective.grok',
           'collective.z3cform.widgets',
+          'plone.principalsource',
           # -*- Extra requirements: -*-
       ],
       extras_require={
