@@ -31,6 +31,7 @@ setup(name='reddplusid.mission',
           'collective.grok',
           'collective.z3cform.widgets',
           'plone.principalsource',
+          'p01.vocabulary.country',
           # -*- Extra requirements: -*-
       ],
       extras_require={
