@@ -183,7 +183,7 @@ class IMission(form.Schema, IImageScaleTraversable):
                 'press enter to add. Repeat to add additional staff.'),
             value_type=schema.Choice(vocabulary=u"plone.principalsource.Users"),
             missing_value=(),
-            required=True,
+            required=False,
             )
 
     mission_scope= schema.Choice(
