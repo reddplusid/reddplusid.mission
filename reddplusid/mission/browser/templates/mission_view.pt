@@ -18,23 +18,44 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-    <tal:block repeat="widget view/widgets/values">
-        <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
-            <label tal:content="widget/label" />
-            <br />
-            <div tal:content="structure widget/render" />
-        </div>
-    </tal:block>
+    <h3>Period Covered</h3>
+            Start Date: <span tal:content="context/start"></span>
+            End Date: <span tal:content="context/end"></span>
 
-    <fieldset tal:repeat="group view/groups"
-              tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
-        <legend tal:content="group/label" />
-        <div class="field" tal:repeat="widget group/widgets/values">
-            <label tal:content="widget/label" />
-            <br />
-            <div tal:content="structure widget/render" />
-        </div>
-    </fieldset>
+    <h3>Output Stream</h3>
+    <p tal:content="context/output_stream"></p>
+
+    <h3>Contribution to Output</h3>
+    <p tal:content="structure view/w/output_contribution/render"></p>
+
+    <h3>Funding Source</h3>
+    <p tal:content="context/mission_funding_source"></p>
+
+    <h3>Members</h3>
+    <p tal:on-error="string:Error: Invalid user found. Edit and re-add
+    members." tal:content="structure view/w/mission_members/render"></p>
+
+    <h3>Authors</h3>
+    <p tal:on-error="string:Error: Invalid user found. Edit and re-add
+    authors." tal:content="structure view/w/mission_author/render"></p>
+
+    <h3>Support Staff</h3>
+    <p tal:on-error="string:Error: Invalid user found. Edit and re-add
+    staff." tal:content="structure view/w/mission_support_staff/render"></p>
+
+    <h3>Mission Scope</h3>
+    <p tal:content="context/mission_scope"></p>
+
+    <h3>Country</h3>
+    <p tal:content="context/country"></p>
+
+    <h3>Indonesian Province</h3>
+    <p tal:content="context/id_province"></p>
+
+    <h3>City</h3>
+    <p tal:content="structure view/w/mission_location/render"></p>
+
+    <h2>File and Mission Reports</h2>
 
     <fieldset id="folder-listing">
         <legend>Contents</legend>
