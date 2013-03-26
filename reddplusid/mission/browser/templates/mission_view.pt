@@ -7,55 +7,71 @@
       i18n:domain="reddplusid.mission">
 <body>
 
-<tal:comment tal:condition="nothing">
-    This is a sample view template. It will not be used for rendering the
-    content unless activated by creation of a view class with a matching name.
-    
-    Note that we're using Plone 4 macros. Replace them with Plone 3 macros
-    if needed.
-</tal:comment>
-
 <metal:main fill-slot="content-core">
+
+
   <metal:content-core define-macro="content-core">
 
+  <div tal:define="mission nocall:context;
+                   mission_view nocall:view">
+
+  <metal:mission define-macro="mission">
+
     <h3>Period Covered</h3>
-            Start Date: <span tal:content="context/start"></span>
-            End Date: <span tal:content="context/end"></span>
+    <p>
+            <label>Start Date:</label><span tal:content="python: mission.start.strftime('%e %B %Y')"></span>
+            <br />
+            <label>End Date:</label> <span tal:content="python: mission.end.strftime('%e %B %Y')"></span>
+    </p>
 
     <h3>Output Stream</h3>
-    <p tal:content="context/output_stream"></p>
+    <p tal:content="mission/output_stream"></p>
 
     <h3>Contribution to Output</h3>
-    <p tal:content="structure view/w/output_contribution/render"></p>
+    <p tal:content="structure mission_view/w/output_contribution/render"></p>
 
     <h3>Funding Source</h3>
-    <p tal:content="context/mission_funding_source"></p>
+    <p tal:content="mission/mission_funding_source"></p>
 
     <h3>Members</h3>
     <p tal:on-error="string:Error: Invalid user found. Edit and re-add
-    members." tal:content="structure view/w/mission_members/render"></p>
+    members." tal:content="structure mission_view/w/mission_members/render"></p>
 
     <h3>Authors</h3>
     <p tal:on-error="string:Error: Invalid user found. Edit and re-add
-    authors." tal:content="structure view/w/mission_author/render"></p>
+    authors." tal:content="structure mission_view/w/mission_author/render"></p>
 
     <h3>Support Staff</h3>
     <p tal:on-error="string:Error: Invalid user found. Edit and re-add
-    staff." tal:content="structure view/w/mission_support_staff/render"></p>
+    staff." tal:content="structure mission_view/w/mission_support_staff/render"></p>
 
     <h3>Mission Scope</h3>
-    <p tal:content="context/mission_scope"></p>
+    <p tal:content="mission/mission_scope"></p>
 
-    <h3>Country</h3>
-    <p tal:content="context/country"></p>
+    <h3>Location</h3>
+    
+    <label>Country:</label><span tal:content="structure mission_view/w/country/render"></span>
+    <br /> 
+    <label>Indonesian Province:</label><span tal:content="structure
+        mission_view/w/id_province/render"></span>
 
-    <h3>Indonesian Province</h3>
-    <p tal:content="context/id_province"></p>
+    <br />
+    <label>City:</label><span tal:content="structure
+        mission_view/w/mission_location/render"></span>
 
-    <h3>City</h3>
-    <p tal:content="structure view/w/mission_location/render"></p>
+    </metal:mission>
 
-    <h2>File and Mission Reports</h2>
+</div>
+
+    <h2>Mission Report</h2>
+
+        <dl class="portalMessage info" tal:condition="not: nocall: context/mission-report | nothing">
+             <dt>Add Mission Report</dt>
+             <dd>No Mission Report has been added to this mission yet.
+             Click on <b><a
+                     href="++add++reddplusid.missionreport.missionreport">Mission
+                     Report</a></b> to add a new draft report.
+        </dl>
 
     <fieldset id="folder-listing">
         <legend>Contents</legend>
