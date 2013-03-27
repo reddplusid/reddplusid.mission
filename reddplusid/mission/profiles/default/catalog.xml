@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<object name="portal_catalog">
+    <index name="output_stream" meta_type="FieldIndex">
+        <indexed_attr value="output_stream"/>
+    </index>
+    <column value="output_stream"/>
+    <index name="mission_funding_source" meta_type="FieldIndex">
+        <indexed_attr value="mission_funding_source"/>
+    </index>
+    <column value="mission_funding_source"/>
+    <index name="mission_members" meta_type="KeywordIndex">
+        <indexed_attr value="mission_members"/>
+    </index>
+    <column value="mission_members"/>
+    <index name="mission_author" meta_type="KeywordIndex">
+        <indexed_attr value="mission_author"/>
+    </index>
+    <column value="mission_author"/>
+    <index name="mission_support_staff" meta_type="KeywordIndex">
+        <indexed_attr value="mission_support_staff"/>
+    </index>
+    <column value="mission_support_staff"/>
+    <index name="mission_scope_type" meta_type="FieldIndex">
+        <indexed_attr value="mission_scope_type"/>
+    </index>
+    <column value="mission_scope_type"/>
+    <index name="id_province" meta_type="FieldIndex">
+        <indexed_attr value="id_province"/>
+    </index>
+    <column value="id_province"/>
+    <index name="country" meta_type="FieldIndex">
+        <indexed_attr value="country"/>
+    </index>
+    <column value="country"/>
+    <index name="mission_location" meta_type="KeywordIndex">
+        <indexed_attr value="mission_location"/>
+    </index>
+    <column value="mission_location"/>
+</object>
