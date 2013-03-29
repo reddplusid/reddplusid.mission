@@ -101,11 +101,6 @@
     <h3>Funding Source</h3>
     <p tal:content="mission/mission_funding_source"></p>
 
-  
-    <h3>Authors</h3>
-    <p tal:on-error="string:Error: Invalid user found. Edit and re-add
-    authors." tal:content="structure mission_view/w/mission_author/render"></p>
-
     </metal:mission>
 
 </div>

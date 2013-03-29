@@ -163,17 +163,6 @@ class IMission(form.Schema, IImageScaleTraversable):
             required=True,
             )
 
-    form.widget(mission_author=AutocompleteMultiFieldWidget)
-    mission_author= schema.List(
-            title=_(u'Author'),
-            description=_(u'List of Authors. Enter '
-                'name to search, select and press Enter to add. Repeat to '
-                'to add additional members with principal author first.'),
-            value_type=schema.Choice(vocabulary=u"plone.principalsource.Users"),
-            missing_value=(),
-            required=True,
-            )
-
     form.widget(mission_support_staff=AutocompleteMultiFieldWidget)
     mission_support_staff= schema.List(
             title=_(u'Support Staff'),
