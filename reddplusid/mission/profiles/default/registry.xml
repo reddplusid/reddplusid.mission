@@ -1,0 +1,13 @@
+<registry>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.mission_members">
+    <value key="title">Mission Members</value>
+    <value key="description">Mission Members index</value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+        <element>plone.app.querystring.operation.string.currentUser</element>
+    </value>
+    <value key="group">Metadata</value>
+  </records>
+</registry>
