@@ -159,7 +159,6 @@ class IMission(form.Schema, IImageScaleTraversable):
                 'name to search, select and press Enter to add. Repeat to '
                 'to add additional members.'),
             value_type=schema.Choice(vocabulary=u"plone.principalsource.Users",),
-            missing_value=(),
             required=True,
             )
 
@@ -171,7 +170,6 @@ class IMission(form.Schema, IImageScaleTraversable):
                 'of the mission. Enter name to search. Select and '
                 'press enter to add. Repeat to add additional staff.'),
             value_type=schema.Choice(vocabulary=u"plone.principalsource.Users"),
-            missing_value=(),
             required=False,
             )
 
@@ -186,7 +184,7 @@ class IMission(form.Schema, IImageScaleTraversable):
             'a province.'),
             vocabulary=id_provinces,
             required=False,
-            missing_value=(),
+            missing_value = None,
             )
 
     country = schema.Choice(
@@ -195,6 +193,7 @@ class IMission(form.Schema, IImageScaleTraversable):
             'a country.'),
             source=p01.vocabulary.country.ISO3166Alpha2CountryVocabulary(None),
             required=False,
+            missing_value = None,
             )
 
     form.widget(mission_location=EnhancedTextLinesFieldWidget)
