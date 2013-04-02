@@ -192,7 +192,8 @@ class IMission(form.Schema, IImageScaleTraversable):
             description=_(u'If Mission Scope is International, please select '
             'a country.'),
             source=p01.vocabulary.country.ISO3166Alpha2CountryVocabulary(None),
-            required=False,
+            required=True,
+            default=u'ID',
             missing_value = None,
             )
 
