@@ -106,8 +106,8 @@
 </div>
 
     <h2>Mission Report</h2>
-
-        <dl class="portalMessage info" tal:condition="not: nocall: context/mission-report | nothing">
+     
+        <dl class="portalMessage info" tal:condition="not:view/contains_missionreport">
              <dt>Add Mission Report</dt>
              <dd>No Mission Report has been added to this mission yet.
              Click on <b><a
