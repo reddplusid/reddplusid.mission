@@ -31,16 +31,16 @@ from reddplusid.mission import MessageFactory as _
 # Interface class; used to define content-type schema.
 
 streams = SimpleVocabulary(
-        [SimpleTerm(value=u'Conservation of Biodiversity', 
-            title=_(u'Conservation of Biodiversity')),
-         SimpleTerm(value=u'Reduction in Carbon Emissions', 
-            title=_(u'Reduction in Carbon Emissions')),
-         SimpleTerm(value=u'Community Forest Management', 
-            title=_(u'Community Forest Management')),
-         SimpleTerm(value=u'Participatory Mapping', 
-            title=_(u'Participatory Mapping')),
-         SimpleTerm(value=u'Restoration of Degraded Land', 
-            title=_(u'Restoration of Degraded Land')),
+        [SimpleTerm(value=u'Institutions and Processes', 
+            title=_(u'Institutions and Processes')),
+         SimpleTerm(value=u'Legal and Regulatory Frameworks', 
+            title=_(u'Legal and Regulatory Frameworks')),
+         SimpleTerm(value=u'Strategic Programst', 
+            title=_(u'Strategic Programs')),
+         SimpleTerm(value=u'Changes to Work Paradigm and Culture', 
+            title=_(u'Changes to Work Paradigm and Culture')),
+         SimpleTerm(value=u'Inclusion / Involvement of Stakeholders', 
+            title=_(u'Inclusion / Involvement of Stakeholders')),
             ]
         ) 
 
